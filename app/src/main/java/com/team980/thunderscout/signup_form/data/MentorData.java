@@ -3,9 +3,9 @@ package com.team980.thunderscout.signup_form.data;
 import java.io.Serializable;
 
 /**
- * Implements data for one student
+ * Implements data for one mentor
  */
-public class StudentData implements Serializable, Cloneable { //TODO why do driverSkill, comments have teleop in the name
+public class MentorData implements Serializable, Cloneable { //TODO why do driverSkill, comments have teleop in the name
 
     private String dataSource;
     public static final String SOURCE_LOCAL_DEVICE = "This device";
@@ -13,22 +13,22 @@ public class StudentData implements Serializable, Cloneable { //TODO why do driv
     private String name;
     private String email;
     private String phoneNumber;
-    private int grade;
+    private String city;
 
-    public StudentData() {
+    public MentorData() {
 
     }
 
     /**
      * Copy constructor
      */
-    public StudentData(StudentData other) {
+    public MentorData(MentorData other) {
         setDataSource(other.getDataSource());
 
         setName(other.getName());
         setEmail(other.getEmail());
         setPhoneNumber(other.getPhoneNumber());
-        setGrade(other.getGrade());
+        setCity(other.getCity());
     }
 
     public String getDataSource() {
@@ -63,11 +63,11 @@ public class StudentData implements Serializable, Cloneable { //TODO why do driv
         this.phoneNumber = phoneNumber;
     }
 
-    public int getGrade() {
-        return grade;
+    public String getCity() {
+        return city;
     }
 
-    public void setGrade(int grade) {
-        this.grade = grade;
+    public void setCity(String city) {
+        this.city = city;
     }
 }

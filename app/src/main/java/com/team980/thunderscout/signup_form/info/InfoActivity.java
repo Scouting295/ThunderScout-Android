@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.team980.thunderscout.signup_form.R;
-import com.team980.thunderscout.signup_form.data.StudentData;
+import com.team980.thunderscout.signup_form.data.MentorData;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -16,7 +16,7 @@ public class InfoActivity extends AppCompatActivity {
 
         Intent launchIntent = getIntent();
 
-        StudentData data = (StudentData) launchIntent.getSerializableExtra("com.team980.thunderscout.signup_form.INFO_STUDENT");
+        MentorData data = (MentorData) launchIntent.getSerializableExtra("com.team980.thunderscout.signup_form.INFO_STUDENT");
 
         setTitle(data.getName());
 
@@ -28,13 +28,13 @@ public class InfoActivity extends AppCompatActivity {
         TextView studentPhoneNumber = (TextView) findViewById(R.id.info_studentPhoneNumber);
         studentPhoneNumber.setText(data.getPhoneNumber());
 
-        TextView studentGrade = (TextView) findViewById(R.id.info_studentGrade);
-        studentGrade.setText("" + data.getGrade());
+        TextView studentGrade = (TextView) findViewById(R.id.info_studentCity);
+        studentGrade.setText("" + data.getCity());
 
         TextView dataSource = (TextView) findViewById(R.id.info_dataSource);
         dataSource.setText(data.getDataSource());
 
-        if (data.getDataSource() == StudentData.SOURCE_LOCAL_DEVICE) {
+        if (data.getDataSource() == MentorData.SOURCE_LOCAL_DEVICE) {
             dataSource.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
         }
     }

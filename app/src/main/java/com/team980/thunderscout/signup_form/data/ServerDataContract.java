@@ -14,7 +14,7 @@ public final class ServerDataContract {
         public static final String COLUMN_NAME_STUDENT_NAME = "name";
         public static final String COLUMN_NAME_STUDENT_EMAIL = "email";
         public static final String COLUMN_NAME_STUDENT_PHONE_NUMBER = "phone_number";
-        public static final String COLUMN_NAME_STUDENT_GRADE = "grade";
+        public static final String COLUMN_NAME_STUDENT_CITY = "city";
         public static final String COLUMN_NAME_DATA_SOURCE = "data_source";
     }
 }

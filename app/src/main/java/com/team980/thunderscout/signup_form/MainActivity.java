@@ -25,7 +25,7 @@ import android.view.View;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.util.ExponentialBackOff;
 import com.google.api.services.sheets.v4.SheetsScopes;
-import com.team980.thunderscout.signup_form.data.StudentData;
+import com.team980.thunderscout.signup_form.data.MentorData;
 import com.team980.thunderscout.signup_form.data.task.DatabaseClearTask;
 import com.team980.thunderscout.signup_form.data.task.DatabaseReadTask;
 import com.team980.thunderscout.signup_form.info.DataViewAdapter;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle("Team 980 Signup");
+        getSupportActionBar().setTitle("FIRST Mentor Signup");
 
         dataView = (RecyclerView) findViewById(R.id.dataView);
 
@@ -71,15 +71,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         dataView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        adapter = new DataViewAdapter(this, new ArrayList<StudentData>());
+        adapter = new DataViewAdapter(this, new ArrayList<MentorData>());
         dataView.setAdapter(adapter);
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
         swipeContainer.setOnRefreshListener(this);
 
-        swipeContainer.setColorSchemeResources(R.color.primary);
-        swipeContainer.setProgressBackgroundColorSchemeResource(R.color.cardview_dark_background);
+        swipeContainer.setColorSchemeResources(R.color.primary, R.color.accent);
+        swipeContainer.setProgressBackgroundColorSchemeResource(R.color.background_floating);
 
         DatabaseReadTask query = new DatabaseReadTask(adapter, this, swipeContainer);
         query.execute();
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         ProgressDialog mProgress = new ProgressDialog(this);
         mProgress.setMessage("Exporting data to Google Sheets...");
 
-        List<StudentData> data = adapter.getDataList();
+        List<MentorData> data = adapter.getDataList();
 
         SheetsSendTask sendTask = new SheetsSendTask(credential, this, mProgress);
         sendTask.execute(data);

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.team980.thunderscout.signup_form.R;
-import com.team980.thunderscout.signup_form.data.StudentData;
+import com.team980.thunderscout.signup_form.data.MentorData;
 
 import java.util.List;
 
@@ -17,11 +17,11 @@ public class DataViewAdapter extends RecyclerView.Adapter<DataViewAdapter.Studen
 
     private LayoutInflater mInflator;
 
-    private List<StudentData> studentData;
+    private List<MentorData> studentData;
 
     private Context context;
 
-    public DataViewAdapter(Context context, List<StudentData> data) {
+    public DataViewAdapter(Context context, List<MentorData> data) {
         super();
 
         mInflator = LayoutInflater.from(context); //TODO move to ViewGroup.getContext()
@@ -39,7 +39,7 @@ public class DataViewAdapter extends RecyclerView.Adapter<DataViewAdapter.Studen
 
     @Override
     public void onBindViewHolder(StudentViewHolder view, int position) {
-        StudentData data = studentData.get(position);
+        MentorData data = studentData.get(position);
 
         view.name.setText(data.getName());    }
 
@@ -51,9 +51,9 @@ public class DataViewAdapter extends RecyclerView.Adapter<DataViewAdapter.Studen
     /**
      * Adds an entry to the view. Called by the database reader.
      *
-     * @param data StudentData to insert
+     * @param data MentorData to insert
      */
-    public void addStudentData(StudentData data) {
+    public void addStudentData(MentorData data) {
        studentData.add(data);
        notifyItemInserted(studentData.size());
     }
@@ -67,7 +67,7 @@ public class DataViewAdapter extends RecyclerView.Adapter<DataViewAdapter.Studen
         studentData.removeAll(studentData);
     }
 
-    public List<StudentData> getDataList() {
+    public List<MentorData> getDataList() {
         return studentData;
     }
 

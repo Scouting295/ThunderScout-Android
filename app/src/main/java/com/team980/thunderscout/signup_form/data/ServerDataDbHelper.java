@@ -23,7 +23,7 @@ public class ServerDataDbHelper extends SQLiteOpenHelper {
                     StudentDataTable.COLUMN_NAME_STUDENT_NAME + TEXT_TYPE + COMMA_SEP +
                     StudentDataTable.COLUMN_NAME_STUDENT_EMAIL + TEXT_TYPE + COMMA_SEP +
                     StudentDataTable.COLUMN_NAME_STUDENT_PHONE_NUMBER + TEXT_TYPE + COMMA_SEP +
-                    StudentDataTable.COLUMN_NAME_STUDENT_GRADE + INTEGER_TYPE + COMMA_SEP +
+                    StudentDataTable.COLUMN_NAME_STUDENT_CITY + TEXT_TYPE + COMMA_SEP +
                     StudentDataTable.COLUMN_NAME_DATA_SOURCE + TEXT_TYPE + ")";
 
     private static final String SQL_DELETE_ENTRIES =

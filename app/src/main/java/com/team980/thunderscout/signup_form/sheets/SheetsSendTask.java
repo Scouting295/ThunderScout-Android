@@ -17,13 +17,13 @@ import com.google.api.services.sheets.v4.model.RowData;
 import com.google.api.services.sheets.v4.model.Sheet;
 import com.google.api.services.sheets.v4.model.Spreadsheet;
 import com.team980.thunderscout.signup_form.MainActivity;
-import com.team980.thunderscout.signup_form.data.StudentData;
+import com.team980.thunderscout.signup_form.data.MentorData;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SheetsSendTask extends AsyncTask<List<StudentData>, Void, Void> {
+public class SheetsSendTask extends AsyncTask<List<MentorData>, Void, Void> {
 
     private Sheets sheetsService = null;
 
@@ -64,11 +64,11 @@ public class SheetsSendTask extends AsyncTask<List<StudentData>, Void, Void> {
     /**
      * Method where it all happens
      */
-    protected final Void doInBackground(List<StudentData>... data) {
-        List<StudentData> dataList = data[0];
+    protected final Void doInBackground(List<MentorData>... data) {
+        List<MentorData> dataList = data[0];
 
         ArrayList<RowData> rows = new ArrayList<>();
-        for (StudentData student : dataList) {
+        for (MentorData student : dataList) {
             ArrayList<CellData> cells = new ArrayList<>();
 
             CellData name = new CellData();
@@ -88,7 +88,7 @@ public class SheetsSendTask extends AsyncTask<List<StudentData>, Void, Void> {
 
             CellData grade = new CellData();
             grade.setUserEnteredValue(
-                    new ExtendedValue().setNumberValue((double) student.getGrade()));
+                    new ExtendedValue().setStringValue(student.getCity()));
             cells.add(grade);
 
             rows.add(new RowData().setValues(cells));

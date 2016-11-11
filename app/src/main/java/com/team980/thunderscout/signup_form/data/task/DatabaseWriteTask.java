@@ -11,21 +11,21 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
 import com.team980.thunderscout.signup_form.MainActivity;
+import com.team980.thunderscout.signup_form.data.MentorData;
 import com.team980.thunderscout.signup_form.data.ServerDataContract;
 import com.team980.thunderscout.signup_form.data.ServerDataDbHelper;
-import com.team980.thunderscout.signup_form.data.StudentData;
 import com.team980.thunderscout.signup_form.recruit.ScoutActivity;
 
 public class DatabaseWriteTask extends AsyncTask<Void, Integer, Void> {
 
-    private final StudentData data;
+    private final MentorData data;
     private Context context;
 
     private LocalBroadcastManager localBroadcastManager;
 
     private ScoutActivity activity;
 
-    public DatabaseWriteTask(StudentData data, Context context) {
+    public DatabaseWriteTask(MentorData data, Context context) {
         this.data = data;
 
         this.context = context;
@@ -33,7 +33,7 @@ public class DatabaseWriteTask extends AsyncTask<Void, Integer, Void> {
         localBroadcastManager = LocalBroadcastManager.getInstance(context);
     }
 
-    public DatabaseWriteTask(StudentData data, Context context, ScoutActivity activity) {
+    public DatabaseWriteTask(MentorData data, Context context, ScoutActivity activity) {
         this(data, context);
 
         this.activity = activity;
@@ -59,7 +59,7 @@ public class DatabaseWriteTask extends AsyncTask<Void, Integer, Void> {
         values.put(ServerDataContract.StudentDataTable.COLUMN_NAME_STUDENT_NAME, data.getName());
         values.put(ServerDataContract.StudentDataTable.COLUMN_NAME_STUDENT_EMAIL, data.getEmail());
         values.put(ServerDataContract.StudentDataTable.COLUMN_NAME_STUDENT_PHONE_NUMBER, data.getPhoneNumber());
-        values.put(ServerDataContract.StudentDataTable.COLUMN_NAME_STUDENT_GRADE, data.getGrade());
+        values.put(ServerDataContract.StudentDataTable.COLUMN_NAME_STUDENT_CITY, data.getCity());
         values.put(ServerDataContract.StudentDataTable.COLUMN_NAME_DATA_SOURCE, data.getDataSource());
 
         // Insert the new row, returning the primary key value of the new row

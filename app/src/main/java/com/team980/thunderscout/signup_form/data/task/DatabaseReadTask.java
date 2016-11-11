@@ -7,16 +7,16 @@ import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 
+import com.team980.thunderscout.signup_form.data.MentorData;
 import com.team980.thunderscout.signup_form.data.ServerDataContract.StudentDataTable;
 import com.team980.thunderscout.signup_form.data.ServerDataDbHelper;
-import com.team980.thunderscout.signup_form.data.StudentData;
 import com.team980.thunderscout.signup_form.info.DataViewAdapter;
 
 /**
  * TODO Rewrite this class to remove redundancy, add sorting/filtering parameters
  */
 @Deprecated()
-public class DatabaseReadTask extends AsyncTask<Void, StudentData, Void> {
+public class DatabaseReadTask extends AsyncTask<Void, MentorData, Void> {
 
     private DataViewAdapter viewAdapter;
     private Context context;
@@ -64,7 +64,7 @@ public class DatabaseReadTask extends AsyncTask<Void, StudentData, Void> {
                 StudentDataTable.COLUMN_NAME_STUDENT_NAME,
                 StudentDataTable.COLUMN_NAME_STUDENT_EMAIL,
                 StudentDataTable.COLUMN_NAME_STUDENT_PHONE_NUMBER,
-                StudentDataTable.COLUMN_NAME_STUDENT_GRADE,
+                StudentDataTable.COLUMN_NAME_STUDENT_CITY,
                 StudentDataTable.COLUMN_NAME_DATA_SOURCE
         };
 
@@ -102,7 +102,7 @@ public class DatabaseReadTask extends AsyncTask<Void, StudentData, Void> {
     }
 
     private void initScoutData(Cursor cursor) {
-        StudentData data = new StudentData();
+        MentorData data = new MentorData();
 
         String studentName = cursor.getString(
                 cursor.getColumnIndexOrThrow(StudentDataTable.COLUMN_NAME_STUDENT_NAME));
@@ -119,10 +119,10 @@ public class DatabaseReadTask extends AsyncTask<Void, StudentData, Void> {
 
         data.setPhoneNumber(studentPhoneNumber);
 
-        int studentGrade = cursor.getInt(
-                cursor.getColumnIndexOrThrow(StudentDataTable.COLUMN_NAME_STUDENT_GRADE));
+        String studentCity = cursor.getString(
+                cursor.getColumnIndexOrThrow(StudentDataTable.COLUMN_NAME_STUDENT_CITY));
 
-        data.setGrade(studentGrade);
+        data.setCity(studentCity);
 
         String dataSource = cursor.getString(
                 cursor.getColumnIndexOrThrow(StudentDataTable.COLUMN_NAME_DATA_SOURCE));
@@ -133,7 +133,7 @@ public class DatabaseReadTask extends AsyncTask<Void, StudentData, Void> {
     }
 
     @Override
-    protected void onProgressUpdate(StudentData[] values) {
+    protected void onProgressUpdate(MentorData[] values) {
         //Runs on UI thread when publishProgress() is called
         viewAdapter.addStudentData(values[0]);
 

@@ -18,14 +18,13 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.team980.thunderscout.signup_form.R;
-import com.team980.thunderscout.signup_form.ThunderScout;
 import com.team980.thunderscout.signup_form.bluetooth.ClientConnectionThread;
-import com.team980.thunderscout.signup_form.data.StudentData;
+import com.team980.thunderscout.signup_form.data.MentorData;
 import com.team980.thunderscout.signup_form.data.task.DatabaseWriteTask;
 
 public class ScoutActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private StudentData studentData;
+    private MentorData studentData;
 
     // IDs for callback
     public static final String OPERATION_SAVE_THIS_DEVICE = "SAVE_THIS_DEVICE";
@@ -40,9 +39,9 @@ public class ScoutActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            studentData = (StudentData) savedInstanceState.getSerializable("StudentData");
+            studentData = (MentorData) savedInstanceState.getSerializable("MentorData");
         } else {
-            studentData = new StudentData(); //TODO cache this if the user wishes to
+            studentData = new MentorData(); //TODO cache this if the user wishes to
         }
 
         setContentView(R.layout.activity_scout);
@@ -75,7 +74,7 @@ public class ScoutActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putSerializable("StudentData", studentData);
+        savedInstanceState.putSerializable("MentorData", studentData);
     }
 
 
@@ -101,7 +100,7 @@ public class ScoutActivity extends AppCompatActivity implements View.OnClickList
             TextInputLayout tilStudentName = (TextInputLayout) findViewById(R.id.signup_tilStudentName);
             TextInputLayout tilStudentEmail = (TextInputLayout) findViewById(R.id.signup_tilStudentEmail);
             TextInputLayout tilStudentPhoneNumber = (TextInputLayout) findViewById(R.id.signup_tilStudentPhoneNumber);
-            TextInputLayout tilStudentGrade = (TextInputLayout) findViewById(R.id.signup_tilStudentGrade);
+            TextInputLayout tilStudentCity = (TextInputLayout) findViewById(R.id.signup_tilStudentGrade);
 
             if (tilStudentName.getEditText().getText().toString().isEmpty()) {
                 tilStudentName.setError("This field is required");
@@ -111,22 +110,17 @@ public class ScoutActivity extends AppCompatActivity implements View.OnClickList
             tilStudentName.setErrorEnabled(false);
 
 
-            if (tilStudentGrade.getEditText().getText().toString().isEmpty()) {
-                tilStudentGrade.setError("This field is required");
+            if (tilStudentCity.getEditText().getText().toString().isEmpty()) {
+                tilStudentCity.setError("This field is required");
                 return;
             }
 
-            if (!ThunderScout.isInteger(tilStudentGrade.getEditText().getText().toString())) {
-                tilStudentGrade.setError("This must be an integer!");
-                return;
-            }
-
-            tilStudentGrade.setErrorEnabled(false);
+            tilStudentCity.setErrorEnabled(false);
 
             studentData.setName(tilStudentName.getEditText().getText().toString());
             studentData.setEmail(tilStudentEmail.getEditText().getText().toString());
             studentData.setPhoneNumber(tilStudentPhoneNumber.getEditText().getText().toString());
-            studentData.setGrade(Integer.valueOf(tilStudentGrade.getEditText().getText().toString()));
+            studentData.setCity(tilStudentCity.getEditText().getText().toString());
 
             Log.d("SCOUTLOOP", "here we go again");
 
@@ -155,11 +149,11 @@ public class ScoutActivity extends AppCompatActivity implements View.OnClickList
         }
 
         if (operationStates.getBoolean(OPERATION_SAVE_THIS_DEVICE)) {
-            studentData.setDataSource(StudentData.SOURCE_LOCAL_DEVICE);
+            studentData.setDataSource(MentorData.SOURCE_LOCAL_DEVICE);
 
             operationStateDialog.setMessage("Saving signup data to this device");
 
-            DatabaseWriteTask task = new DatabaseWriteTask(new StudentData(studentData), getApplicationContext(), this); //MEMORY LEAK PREVENTION
+            DatabaseWriteTask task = new DatabaseWriteTask(new MentorData(studentData), getApplicationContext(), this); //MEMORY LEAK PREVENTION
             task.execute();
 
         } else if (operationStates.getBoolean(OPERATION_SEND_BLUETOOTH)) {

@@ -17,24 +17,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
-            app:layout_scrollFlags="scroll|snap"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
-
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="3dp"
-            android:background="@color/background_floating">
-
-            <Button
-                android:id="@+id/button_scout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:onClick="onButtonPressed"
-                android:text="Sign up" />
-
-        </android.support.v7.widget.Toolbar>
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -50,5 +33,20 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical" />
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_scout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_send_white_24dp"
+        app:fabSize="normal"
+        app:backgroundTint="@color/accent"
+        app:elevation="6dp"
+        android:onClick="onButtonPressed"
+        app:pressedTranslationZ="12dp" />
 
 </android.support.design.widget.CoordinatorLayout>

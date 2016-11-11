@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.team980.thunderscout.signup_form.data.StudentData;
+import com.team980.thunderscout.signup_form.data.MentorData;
 import com.team980.thunderscout.signup_form.recruit.ScoutActivity;
 import com.team980.thunderscout.signup_form.util.TSNotificationManager;
 
@@ -24,13 +24,13 @@ public class ClientConnectionThread extends Thread { //TODO move to AsyncTask
 
     private TSNotificationManager notificationManager;
 
-    private StudentData studentData;
+    private MentorData studentData;
 
     private Context context;
 
     private ScoutActivity activity;
 
-    public ClientConnectionThread(BluetoothDevice device, StudentData data, Context context) {
+    public ClientConnectionThread(BluetoothDevice device, MentorData data, Context context) {
         // Use a temporary object that is later assigned to mmSocket,
         // because mmSocket is final
         BluetoothSocket tmp = null;
@@ -56,7 +56,7 @@ public class ClientConnectionThread extends Thread { //TODO move to AsyncTask
     /**
      * Version with callback support
      */
-    public ClientConnectionThread(BluetoothDevice device, StudentData data, Context context, ScoutActivity activity) {
+    public ClientConnectionThread(BluetoothDevice device, MentorData data, Context context, ScoutActivity activity) {
         this(device, data, context);
 
         this.activity = activity;

@@ -99,15 +99,14 @@
                 android:id="@+id/signup_tilStudentGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Grade">
+                android:hint="City">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/signup_editTextStudentGrade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:textSize="30sp"
-                    android:inputType="number"/>
+                    android:textSize="30sp" />
 
             </android.support.design.widget.TextInputLayout>
 

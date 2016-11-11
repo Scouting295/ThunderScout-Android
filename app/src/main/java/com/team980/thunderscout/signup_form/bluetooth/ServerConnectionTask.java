@@ -8,7 +8,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.team980.thunderscout.signup_form.data.StudentData;
+import com.team980.thunderscout.signup_form.data.MentorData;
 import com.team980.thunderscout.signup_form.data.task.DatabaseWriteTask;
 import com.team980.thunderscout.signup_form.util.TSNotificationManager;
 
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class ServerConnectionTask extends AsyncTask<Void, Integer, StudentData> {
+public class ServerConnectionTask extends AsyncTask<Void, Integer, MentorData> {
 
     private final BluetoothSocket mmSocket;
 
@@ -39,7 +39,7 @@ public class ServerConnectionTask extends AsyncTask<Void, Integer, StudentData> 
     }
 
     @Override
-    protected StudentData doInBackground(Void[] params) {
+    protected MentorData doInBackground(Void[] params) {
         int notificationId = notificationManager.showBtTransferInProgress(mmSocket.getRemoteDevice().getName());
 
         ObjectInputStream fromScoutStream;
@@ -57,9 +57,9 @@ public class ServerConnectionTask extends AsyncTask<Void, Integer, StudentData> 
         }
 
         //TODO version check
-        StudentData data = null;
+        MentorData data = null;
         try {
-            data = (StudentData) fromScoutStream.readObject();
+            data = (MentorData) fromScoutStream.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -89,13 +89,13 @@ public class ServerConnectionTask extends AsyncTask<Void, Integer, StudentData> 
     }
 
     @Override
-    protected void onPostExecute(StudentData o) {
+    protected void onPostExecute(MentorData o) {
         super.onPostExecute(o);
 
         if (o != null) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
             //if (prefs.getString("pref_serverStorageTask", "SAVE").equals("SAVE")) { //TODO modularize the saving mechanism
-            //Put the fetched StudentData in the local database
+            //Put the fetched MentorData in the local database
                 DatabaseWriteTask writeTask = new DatabaseWriteTask(o, context);
                 writeTask.execute();
             //} else if (prefs.getString("pref_serverStorageTask", "SAVE").equals("SEND_SHEETS")) {
